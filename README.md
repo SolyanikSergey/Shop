@@ -32,33 +32,39 @@ User should provide token and itemId that should be bought.
 
 This class created to work with items.
 
-Column		DataType	Comment
-ItemId		int
-Name		string
-Description	string
-Price		decimal		According to the requirements, int should be used for price, but, much more better store exactly decimal type. This type allows to store fractional values and SQL Server works with decimal fractional values pretty good.
-Quantity	int			Count of items, that available to buy.
+| Property  | DataType | Comment |
+| ------------- | ------------- | ------------- |
+| ItemId  | int  |  |
+| Name  | string  |  |
+| Description  | string  |  |
+| Price  | decimal  | According to the requirements, int should be used for price, but, much more better store exactly decimal type. This type allows to store fractional values and SQL Server works with decimal fractional values pretty good. |
+| Quantity  | int  | Count of items, that available to buy. |
+
 
 #### OrderHeader
 
 OrderHeader - class, that store base information about order. This class has one-to-many relationship with OrderItem class.
 
-Column			DataType	Comment
-OrderHeaderId	int
-OrderDate		DateTime
-IdentityUserId	string		Used to store information about user, that created an order.
-OrderStatus		enum		Could be used to separate different phases for order. Available values - Placed, Verified, Devlivered. Also, after status will be changed, Available Quantity for items should be descreased
+| Property  | DataType | Comment |
+| ------------- | ------------- | ------------- |
+| OrderHeaderId  | int  |  |
+| OrderDate  | DateTime  |  |
+| IdentityUserId  | string  | Used to store information about user, that created an order. |
+| OrderStatus  | enum  | Could be used to separate different phases for order. Available values - Placed, Verified, Devlivered. Also, after status will be changed, Available Quantity for items should be descreased. |
+
+
 
 #### OrderItem
 
 OrderItem - class, that store information about added to order item
 
-Column			DataType	Comment
-OrderItemId		int
-OrderHeaderId	int
-ItemId			int
-Price			decimal		We should duplicate this field. In case of item price will be changed, no one orderItem price will not be changed.
-Count			int
+| Property  | DataType | Comment |
+| ------------- | ------------- | ------------- |
+| OrderItemId  | int  |  |
+| OrderHeaderId  | int  |  |
+| ItemId  | int  |  |
+| Price  | decimal  | We should duplicate this field. In case of item price will be changed, no one orderItem price will not be changed. |
+| Count  | int  |  |
 
 
 ## API calls:
