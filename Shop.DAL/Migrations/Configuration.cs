@@ -1,6 +1,8 @@
 namespace Shop.DAL.Migrations
 {
+    using Shop.DAL.Entities;
     using System;
+    using System.Collections.Generic;
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
@@ -14,10 +16,23 @@ namespace Shop.DAL.Migrations
 
         protected override void Seed(Shop.DAL.Data.ShopDbContext context)
         {
-            //  This method will be called after migrating to the latest version.
-
-            //  You can use the DbSet<T>.AddOrUpdate() helper extension method 
-            //  to avoid creating duplicate seed data.
+            context.Items.AddOrUpdate(new List<Item>()
+            {
+                new Item
+                {
+                    Name = "Test Product # 1",
+                    Description = "Description for Test Product # 1",
+                    Price = 20.95M,
+                    Quantity = 100
+                },
+                new Item
+                {
+                    Name = "Test Product # 2 (out of stock)",
+                    Description = "Description for Test Product # 2 (out of stock)",
+                    Price = 20.15M,
+                    Quantity = 0
+                }
+            }.ToArray());
         }
     }
 }
