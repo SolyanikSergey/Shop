@@ -20,7 +20,7 @@ namespace Shop.BLL.UnitTests.Items
         }
 
         [TestMethod]
-        public async Task Check_get_entities_count()
+        public async Task Check_get_items_count()
         {
             // arrange
             IEnumerable<ItemViewModel> itemViewModels;
