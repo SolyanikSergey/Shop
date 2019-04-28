@@ -64,6 +64,8 @@
   <ItemGroup>
     <Compile Include="Items\ItemServiceTestInitializer.cs" />
     <Compile Include="Items\ItemServiceUnitTest.cs" />
+    <Compile Include="Orders\OrderServiceTestInitializer.cs" />
+    <Compile Include="Orders\OrderServiceUnitTest.cs" />
     <Compile Include="SetupAssemblyInitializer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

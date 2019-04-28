@@ -5,22 +5,29 @@ using Shop.DAL.IRepositories.Generic;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
-namespace Shop.BLLTests.Items
+namespace Shop.BLL.UnitTests.Items
 {
     public class ItemServiceTestInitializer
     {
+        public static IEnumerable<Item> Items { get; private set; }
+
+        static ItemServiceTestInitializer()
+        {
+            Items = GetTestItems();
+        }
+
         public ItemService InitializeService()
         {
-            IEnumerable<Item> entities = GetTestItems();
+            Items = GetTestItems();
 
             Mock<IGenericRepository<Item>> itemRepository = new Mock<IGenericRepository<Item>>();
-            itemRepository.Setup(r => r.GetAllAsync()).Returns(Task.FromResult(entities));
+            itemRepository.Setup(r => r.GetAllAsync()).Returns(Task.FromResult(Items));
 
             ItemService itemService = new ItemService(itemRepository.Object);
             return itemService;
         }
 
-        public List<Item> GetTestItems()
+        private static List<Item> GetTestItems()
         {
             List<Item> data = new List<Item>();
 

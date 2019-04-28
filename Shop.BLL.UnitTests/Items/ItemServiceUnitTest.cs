@@ -1,26 +1,22 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Shop.BLL.Services;
-using Shop.DAL.Entities;
 using Shop.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Shop.BLLTests.Items
+namespace Shop.BLL.UnitTests.Items
 {
     [TestClass]
-    public class EntityDataServiceUnitTest
+    public class ItemServiceUnitTest
     {
         private static ItemService _itemService;
-        private static IEnumerable<Item> _items;
 
         [ClassInitialize]
         public static void Initialize(TestContext typeContext)
         {
             ItemServiceTestInitializer itemServiceTestInitializer = new ItemServiceTestInitializer();
-
             _itemService = itemServiceTestInitializer.InitializeService();
-            _items = itemServiceTestInitializer.GetTestItems();
         }
 
         [TestMethod]
@@ -33,7 +29,7 @@ namespace Shop.BLLTests.Items
             itemViewModels = await _itemService.GetAllAsync();
 
             // assert
-            Assert.AreEqual(_items.Count(), itemViewModels.Count(), "Item Service returned different count, not like mocked DbContext!");
+            Assert.AreEqual(ItemServiceTestInitializer.Items.Count(), itemViewModels.Count(), "Item Service returned different count, not like mocked DbContext!");
         }
     }
 }
