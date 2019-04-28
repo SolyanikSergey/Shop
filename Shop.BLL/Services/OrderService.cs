@@ -1,7 +1,9 @@
-﻿using Shop.BLL.IServices;
+﻿using AutoMapper;
+using Shop.BLL.IServices;
 using Shop.Common.Models;
 using Shop.DAL.Entities;
 using Shop.DAL.IRepositories.Generic;
+using Shop.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -28,7 +30,14 @@ namespace Shop.BLL.Services
 
             var orderHeader = GenerateOrderHeader(item, userId);
             var placedOrder = await _orderHeaderRepository.AddAsync(orderHeader);
-            return new ResultModel { IsSuccess = true, Message = $"Order with id '{placedOrder.OrderHeaderId}' was successfully placed", Data = placedOrder };
+            var placedOrderViewModel = Mapper.Map<OrderHeader, OrderHeaderViewModel>(placedOrder);
+
+            return new ResultModel
+            {
+                IsSuccess = true,
+                Message = $"Order with id '{placedOrderViewModel.OrderHeaderId}' was successfully placed",
+                Data = placedOrderViewModel
+            };
         }
 
         private ResultModel CheckIsItemAvalableToBuy(Item item, int itemId)

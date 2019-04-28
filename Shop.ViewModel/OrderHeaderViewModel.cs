@@ -8,6 +8,8 @@ namespace Shop.ViewModel
         public int OrderHeaderId { get; set; }
         public DateTime OrderDate { get; set; }
 
+        public string IdentityUserId { get; set; }
+
         public ICollection<OrderItemViewModel> OrderItems { get; set; }
     }
 }
