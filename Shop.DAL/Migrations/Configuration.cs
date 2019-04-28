@@ -16,7 +16,8 @@ namespace Shop.DAL.Migrations
 
         protected override void Seed(Shop.DAL.Data.ShopDbContext context)
         {
-            context.Items.AddOrUpdate(new List<Item>()
+            context.Items.AddOrUpdate(c => c.Name,
+            new List<Item>()
             {
                 new Item
                 {

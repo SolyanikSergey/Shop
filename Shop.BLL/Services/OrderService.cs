@@ -57,6 +57,7 @@ namespace Shop.BLL.Services
             {
                 IdentityUserId = userId,
                 OrderDate = DateTime.Now,
+                OrderStatus = OrderStatus.Placed,
                 OrderItems = new List<OrderItem>()
                 {
                     new OrderItem
