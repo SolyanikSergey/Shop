@@ -50,7 +50,7 @@ OrderHeader - class, that store base information about order. This class has one
 | OrderHeaderId  | int  |  |
 | OrderDate  | DateTime  |  |
 | IdentityUserId  | string  | Used to store information about user, that created an order. |
-| OrderStatus  | enum  | Could be used to separate different phases for order. Available values - Placed, Verified, Devlivered. Also, after status will be changed, Available Quantity for items should be descreased. |
+| OrderStatus  | enum  | Could be used to separate different phases for order. Available values - Placed, Verified, Delivered. Also, after status will be changed, Available Quantity for items should be descreased (this logic could be implemented in the future). |
 
 
 
@@ -163,7 +163,7 @@ Only business services are covered by unit tests.
 ## Questions and Answers
 
 **Q:** How do we know if a user is authenticated? <br />
-**A:** Token-based authentication used in this solution. It means, that user should provide credentials to get a token. This token should be used to requests, that requires authorization.
+**A:** Token-based authentication used in this solution. It means, that user should provide credentials to get a token. This token should be used to requests, that requires authorization. If user provided valid token, it means that user is authenticated.
 
 **Q:** Is it always possible to buy an item?<br />
 **A:** No, in this solution, user isn't able to buy an 'out of stock' item (item with stock count = 0)
