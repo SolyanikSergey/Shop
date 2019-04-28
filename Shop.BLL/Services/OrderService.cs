@@ -23,18 +23,18 @@ namespace Shop.BLL.Services
         public async Task<ResultModel> BuyAsync(int itemId, string userId)
         {
             var item = await _itemRepository.GetAsync(itemId);
-            var itemAvailableResult = CheckIsItemAvalableToBuy(item);
+            var itemAvailableResult = CheckIsItemAvalableToBuy(item, itemId);
             if (!itemAvailableResult.IsSuccess) return itemAvailableResult;
 
             var orderHeader = GenerateOrderHeader(item, userId);
             var placedOrder = await _orderHeaderRepository.AddAsync(orderHeader);
-            return new ResultModel { IsSuccess = true, Message = $"Order '{placedOrder.OrderHeaderId}' was successfully placed", Data = placedOrder };
+            return new ResultModel { IsSuccess = true, Message = $"Order with id '{placedOrder.OrderHeaderId}' was successfully placed", Data = placedOrder };
         }
 
-        private ResultModel CheckIsItemAvalableToBuy(Item item)
+        private ResultModel CheckIsItemAvalableToBuy(Item item, int itemId)
         {
             if (item == null)
-                return new ResultModel { IsSuccess = false, Message = $"There are no item with id '{item.ItemId}'" };
+                return new ResultModel { IsSuccess = false, Message = $"There are no item with id '{itemId}'" };
 
             if (item.Quantity < 1)
                 return new ResultModel { IsSuccess = false, Message = $"Sorry, item with id '{item.ItemId}' is out of stock" };

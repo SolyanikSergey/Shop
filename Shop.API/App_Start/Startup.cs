@@ -19,7 +19,8 @@ namespace Shop.API.App_Start
 
             app.UseCors(Microsoft.Owin.Cors.CorsOptions.AllowAll);
             ConfigureOAuth(app);
-            
+
+            config.Formatters.JsonFormatter.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
             app.UseWebApi(config);
         }
 
