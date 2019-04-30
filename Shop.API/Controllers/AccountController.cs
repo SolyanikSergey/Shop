@@ -6,7 +6,7 @@ using System.Web.Http;
 
 namespace Shop.API.Controllers
 {
-    public class AccountController : ApiController
+    public class AccountController : BaseController
     {
         private readonly IAuthService _authService;
 

@@ -12,6 +12,12 @@ namespace Shop.API
             config.MapHttpAttributeRoutes();
 
             config.Routes.MapHttpRoute(
+                name: "HomePageApi",
+                routeTemplate: "",
+                defaults: new { controller = "Items" }
+            );
+
+            config.Routes.MapHttpRoute(
                 name: "DefaultApi",
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }

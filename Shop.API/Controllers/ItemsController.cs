@@ -1,12 +1,10 @@
 ﻿using Shop.BLL.IServices;
-using Shop.ViewModel;
-using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Web.Http;
 
 namespace Shop.API.Controllers
 {
-    public class ItemsController : ApiController
+    public class ItemsController : BaseController
     {
         private readonly IItemService _itemService;
 
@@ -15,6 +13,6 @@ namespace Shop.API.Controllers
             _itemService = itemService;
         }
 
-        public async Task<IEnumerable<ItemViewModel>> Get() => await _itemService.GetAllAsync();
+        public async Task<IHttpActionResult> Get() => Ok(await _itemService.GetAllAsync());
     }
 }
